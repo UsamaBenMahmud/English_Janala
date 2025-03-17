@@ -1,11 +1,403 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Font CDN (Poppins)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google Font CDN (Hind Siliguri)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google Font CDN (Tiro Bangla)-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Website Title Logo -->
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+
+    <!-- Tailwind CSS & DaisyUI CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Sweet Alert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Font Awesome CDN -->
+    <script
+      src="https://kit.fontawesome.com/89cee7f055.js"
+      crossorigin="anonymous"
+    ></script>
+   <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: '#422AD5'
+                        },
+                        fontFamily: {
+                            english: ['Poppins', 'sans-serif'],
+                            bangla: ['Hind Siliguri', 'sans-serif']
+                        }
+                    }
+                }
+            }
+        </script>
+
+    <!-- Style Section -->
+    <style>
+      /* Font Styling Section */
+      .poppins {
+        font-family: "Poppins", sans-serif;
+      }
+      .hind-siliguri {
+        font-family: "Hind Siliguri", sans-serif;
+      }
+      .tiro-bangla {
+        font-family: "Tiro Bangla", serif;
+      }
+
+      .bg {
+        background: linear-gradient(
+            178.08deg,
+            rgba(255, 255, 255, 0.3) -28.101%,
+            rgba(0, 0, 0, 0) 128.101%
+          ),
+          linear-gradient(
+            169.25deg,
+            rgba(255, 255, 255, 0.05) 24.246%,
+            rgba(0, 0, 0, 0) 24.246%
+          );
+        backdrop-filter: blur(40px);
+      }
+
+      .inactive {
+        display: none;
+      }
+
+      .active {
+        background-color: #422AD5;
+        color: white;
+      }
+    </style>
+
+    <!-- Animation Section -->
+
+    <!-- Title Section -->
     <title>English Janala</title>
-</head>
-<body>
+  </head>
+  <body class="poppins w-11/12 mx-auto">
+    <!-- Header Section -->
+    <header class="relative">
+      <!-- Nav Section -->
+      <nav
+        id="nav"
+        class="lg:fixed lg:w-11/12 top-0 z-50 inactive bg p-2 md:p-4 flex justify-between items-center border-b border-[#C6BDBD] bg-transparent"
+      >
+        <!-- Logo Container -->
+        <div>
+          <h1 class="flex items-center text-xl">
+            <span class="text-[#18181B] font-semibold">English </span>
+            <img src="./images/logo.png" alt="" srcset="" />
+            <span class="tiro-bangla text-[#000000] font-medium">জানালা</span>
+          </h1>
+        </div>
+        <!-- Navigation Button Container -->
+        <div class="space-x-2 hidden md:flex">
+          <button
+          onclick="smoothScroll('faqContainer', 1000)"
+            id="faqBTN"
+            class="btn bg-white text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white"
+          >
+            <i class="fa-solid fa-circle-question text-lg"></i> FAQ
+          </button>
+          <button
+            onclick="smoothScroll('learnContainer', 1000)"
+            id="learnBTN"
+            class="btn bg-white text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white"
+          >
+            <i class="fa-solid fa-book-open text-lg"></i> Learn
+          </button>
+          <button
+            id="logoutBTN"
+            class="btn bg-white text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white"
+          >
+            <i class="fa-solid fa-right-from-bracket text-lg"></i> Logout
+          </button>
+        </div>
+        <!-- Dropdown Button Container -->
+        <div class="dropdown dropdown-end md:hidden">
+          <div tabindex="0" role="button" class="btn btn-ghost md:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          <ul
+            tabindex="0"
+            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2"
+          >
+            <li>
+              <button
+              onclick="smoothScroll('learnContainer', 1000)"
+                id="learnBTN"
+                class="btn bg-white text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white"
+              >
+                <i class="fa-solid fa-book-open text-lg"></i> Learn
+              </button>
+            </li>
+
+            <li>
+              <button
+              onclick="smoothScroll('faqContainer', 1000)"
+                id="faqBTN"
+                class="btn bg-white text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white"
+              >
+                <i class="fa-solid fa-circle-question text-lg"></i> FAQ
+              </button>
+            </li>
+
+            <li>
+              <button
+                onclick="logOutBTN()"
+                class="btn bg-white text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white w-full"
+              >
+                <i class="fa-solid fa-right-from-bracket text-lg"></i> Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+      <!-- Hero Section -->
+      <section class="mx-1 my-9 md:my-11 md:flex justify-between items-center">
+        <div>
+          <div>
+            <h2 class="text-4xl font-extrabold mb-3">
+              <span class="text-[#00BCFF]">English</span> is Easy!!
+            </h2>
+            <p class="hind-siliguri font-medium mb-4">
+              আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন
+              অথবা<br />আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons
+              আপনাকে নিয়ে<br />যাবে অন্য একটি Level এ
+            </p>
+
+            <!-- Input Form Section -->
+            <form class="space-y-3">
+              <input
+                id="inputName"
+                type="text"
+                value=""
+                placeholder="Enter Your Name"
+                class="input"
+              />
+              <br />
+              <input
+                id="inputPassword"
+                type="password"
+                value=""
+                placeholder="Enter Your Password"
+                class="input"
+              />
+              <br />
+              <button
+                id="formBTN"
+                class="btn text-white bg-[#422AD5] hover:text-[#422AD5] hover:border-[#422AD5] hover:bg-white"
+              >
+                Get Started
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- Image Container -->
+        <div class="lg:w-[500px] lg:h-[480px]">
+          <img src="./images/hero-student.png" alt="Student Image" />
+        </div>
+      </section>
+
+      <!-- Learning Section -->
+      <section id="learnContainer" class="inactive px-1 py-28">
+        <h3 class="text-center text-2xl font-bold mb-10">
+          <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+        </h3>
+
+        <!-- Lesson btn Section -->
+        <!-- btn Section -->
+        <div
+          id="lessonsContainer"
+          class="grid grid-cols-2 gap-2 md:grid-cols-4 lg:grid-cols-7 lg:gap-3 mb-6"
+        ></div>
+
+        <!-- lesson Push Section -->
+        <div
+          id="lessonCard"
+          class="py-10 bg-[#F8F8F8] rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          <div id="spinner" class="col-span-full justify-self-center">
+            <span class="loading loading-dots loading-xs"></span>
+            <span class="loading loading-dots loading-sm"></span>
+            <span class="loading loading-dots loading-md"></span>
+            <span class="loading loading-dots loading-lg"></span>
+            <span class="loading loading-dots loading-xl"></span>
+          </div>
+          <!-- Not Selected any lesson Button -->
+          <div class="col-span-full">
+            <div class="py-10 text-center bg-[#F8F8F8] rounded-3xl">
+              <p class="hind-siliguri text-[#79716B] mb-3">
+                আপনি এখনো কোন Lesson Select করেন নাই
+              </p>
+              <h3 class="hind-siliguri text-3xl text-[#292524] font-medium">
+                একটি Lesson Select করুন।
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Details btn -->
+        <button onabort=""></button>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="faqContainer" class="inactive px-1 py-28">
+        <h3 class="text-center text-2xl font-bold mb-10">
+          <span class="text-[#00BCFF]">Frequently</span> Asked Questions
+        </h3>
+
+        <div class="space-y-4">
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              What is the difference between var, let, and const?
+            </div>
+            <div class="collapse-content text-sm">
+              <q class="font-bold">var</q> is function-scoped and hoisted,
+              <q class="font-bold">let</q> is block-scoped and mutable,
+              <q class="font-bold">const</q> is block-scoped and immutable.
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              What is the difference between map(), forEach(), and filter()?
+            </div>
+            <div class="collapse-content text-sm">
+              <q class="font-bold">map()</q> returns a new array,
+              <q class="font-bold">forEach()</q> iterates without returning,
+              <q class="font-bold">filter()</q> returns a filtered array.
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              What are arrow functions, and how are they different from regular
+              functions?
+            </div>
+            <div class="collapse-content text-sm">
+              Unlike <q class="font-bold">regular functions</q>,
+              <q class="font-bold">arrow functions</q> don’t have their own
+              this, arguments, or prototype.
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              How do JavaScript Promises work?
+            </div>
+            <div class="collapse-content text-sm">
+              A <span class="font-bold">JavaScript Promise</span> represents an
+              asynchronous operation with pending, fulfilled, or rejected
+              states.
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              How do closures work in JavaScript?
+            </div>
+            <div class="collapse-content text-sm">
+              A <span class="font-bold">closure</span> allows a function to
+              access variables from its outer scope even after execution.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer
+      class="px-1 py-10 md:py-12 bg-[#FFFFFF] md:flex justify-between items-end border-t border-[#ffebeb]"
+    >
+      <div>
+        <h1 class="flex items-center text-xl mb-3">
+          <span class="text-[#18181B] font-semibold">English </span>
+          <img src="./images/logo.png" alt="" srcset="" />
+          <span class="tiro-bangla text-[#000000] font-medium">জানালা</span>
+        </h1>
+        <p class="text-lg font-medium text-[#000000] mb-2">ইংরেজি শিখুন সহজে</p>
+        <p class="text-[#000000]">Providing ED-Tech Applications since 2025</p>
+      </div>
+      <div class="mt-4 md:mt-0">
+        <h4 class="text-sm font-semibold mb-2">Follow us</h4>
+        <div class="text-2xl space-x-2">
+          <a href="https://www.facebook.com/shadshs91/"
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
+          <a href="https://www.instagram.com/shadshs91/"
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
+          <a href="https://x.com/shadshs91"
+            ><i class="fa-brands fa-x-twitter"></i
+          ></a>
+          <a href="https://www.youtube.com/"
+            ><i class="fa-brands fa-youtube"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script src="./utilities/utilities.js"></script>
     
-</body>
+    <script src="./script/index.js"></script>
+  </body>
 </html>
